@@ -1,8 +1,9 @@
 name: Sum Test 
 on: push 
-runs-on: self-hosted
 
 jobs:
   test:
+    runs-on: self-hosted
+
     steps:
       - run: javac -d out $(find java/base java/sum -name "*.java") && java -ea -cp out sum.SumTest Base 3233 3435 3637 3839 4142 4749

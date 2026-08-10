@@ -5,7 +5,6 @@ import base.Selector;
 import java.util.Comparator;
 import java.util.function.Function;
 import java.util.stream.Stream;
-import wordStat.WordStatTester;
 
 /**
  * Tests for <a href="https://www.kgeorgiy.info/courses/prog-intro/homeworks.html#wordstat">Word

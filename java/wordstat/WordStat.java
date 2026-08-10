@@ -1,7 +1,48 @@
 package wordstat;
 
-/** WordStat */
-public class WordStat {
+import java.util.Map;
 
-  public static void main(String[] args) {}
+/**
+ * WordStat
+ *
+ * @author Doschennikov Nikita (doschennicovn@gmail.com)
+ */
+public final class WordStat extends BaseWordStat {
+
+  /**
+   * @param args
+   */
+  public static final void main(final String[] args) {
+    new WordStat().run(args);
+  }
+
+  /**
+   * (non-Javadoc)
+   *
+   * @see wordstat.BaseWordStat#modify(java.lang.String)
+   */
+  @Override
+  protected final String[] modify(final String word) {
+    return new String[] {word};
+  }
+
+  /**
+   * (non-Javadoc)
+   *
+   * @see wordstat.BaseWordStat#isValidWord(java.lang.String)
+   */
+  @Override
+  protected final boolean isValidWord(final String word) {
+    return true;
+  }
+
+  /**
+   * (non-Javadoc)
+   *
+   * @see wordstat.BaseWordStat#sorted(java.util.Map)
+   */
+  @Override
+  protected final Map<String, WordInfo> sorted(final Map<String, WordInfo> words) {
+    return words;
+  }
 }

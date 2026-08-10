@@ -2,9 +2,13 @@ package markup;
 
 import java.util.List;
 
-/** Strikeout */
-public class Strikeout extends AbstractMarkup implements MarkupElement {
-  public Strikeout(List<ParagraphElement> elements) {
+/**
+ * Strikeout
+ *
+ * @author Doschennikov Nikita (doschennicovn@gmail.com)
+ */
+public final class Strikeout extends AbstractMarkup implements MarkupElement {
+  public Strikeout(final List<ParagraphElement> elements) {
     super(elements, "~", "s", "\\textst{", "}");
   }
 }

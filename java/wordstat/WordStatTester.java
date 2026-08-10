@@ -11,7 +11,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import wordStat.WordStatChecker;
 
 /**
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)

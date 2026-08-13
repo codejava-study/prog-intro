@@ -19,26 +19,6 @@ public final class WordStatLength extends BaseWordStat {
   /**
    * (non-Javadoc)
    *
-   * @see wordstat.BaseWordStat#modify(java.lang.String)
-   */
-  @Override
-  protected final String[] modify(final String word) {
-    return new String[] {word};
-  }
-
-  /**
-   * (non-Javadoc)
-   *
-   * @see wordstat.BaseWordStat#isValidWord(java.lang.String)
-   */
-  @Override
-  protected final boolean isValidWord(final String word) {
-    return true;
-  }
-
-  /**
-   * (non-Javadoc)
-   *
    * @see wordstat.BaseWordStat#sorted(java.util.Map)
    */
   @Override

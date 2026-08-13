@@ -11,6 +11,9 @@ import java.util.Map;
  */
 public abstract class BaseWordStat {
 
+  private int pos = 1;
+  private int lineNumber = 1;
+
   /**
    * @param args
    */
@@ -33,19 +36,25 @@ public abstract class BaseWordStat {
    * @param words
    * @return
    */
-  protected abstract Map<String, WordInfo> sorted(Map<String, WordInfo> words);
+  protected Map<String, WordInfo> sorted(Map<String, WordInfo> words) {
+    return words;
+  }
 
   /**
    * @param word
    * @return
    */
-  protected abstract String[] modify(final String word);
+  protected String[] modify(final String word) {
+    return new String[] {word};
+  }
 
   /**
    * @param word
    * @return
    */
-  protected abstract boolean isValidWord(final String word);
+  protected boolean isValidWord(final String word) {
+    return true;
+  }
 
   /**
    * @param filename
@@ -69,6 +78,10 @@ public abstract class BaseWordStat {
             sb.append(ch);
           } else {
             processWord(sb, words);
+
+            if (ch == '\n') {
+              lineNumber++;
+            }
           }
 
           read = reader.read();
@@ -104,9 +117,7 @@ public abstract class BaseWordStat {
           new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "UTF-8"));
 
       try {
-        for (final Map.Entry<String, WordInfo> e : words.entrySet()) {
-          writer.write(e.getKey() + " " + e.getValue().getCount() + "\n");
-        }
+        fillWriter(words, writer);
       } finally {
         writer.close();
       }
@@ -116,6 +127,12 @@ public abstract class BaseWordStat {
       System.out.println("File '" + filename + "' was not found: " + e.getMessage());
     } catch (final IOException e) {
       System.out.println("General IO exception occured, reason: " + e.getMessage());
+    }
+  }
+
+  protected void fillWriter(Map<String, WordInfo> words, Writer writer) throws IOException {
+    for (final Map.Entry<String, WordInfo> e : words.entrySet()) {
+      writer.write(e.getKey() + " " + e.getValue().count() + "\n");
     }
   }
 
@@ -136,12 +153,14 @@ public abstract class BaseWordStat {
           WordInfo wi;
           if (words.containsKey(modifiedWord)) {
             wi = words.get(modifiedWord);
-            wi.incrementCount();
+            wi.addLinePosition(lineNumber, pos);
           } else {
             wi = new WordInfo(modifiedWord);
-            wi.incrementCount();
+            wi.addLinePosition(lineNumber, pos);
             words.put(modifiedWord, wi);
           }
+
+          pos++;
         }
       }
     }
@@ -151,7 +170,7 @@ public abstract class BaseWordStat {
    * @param ch
    * @return
    */
-  private final boolean isValidChar(final char ch) {
+  protected boolean isValidChar(final char ch) {
     return Character.isLetter(ch)
         || ch == '\''
         || Character.getType(ch) == Character.DASH_PUNCTUATION;

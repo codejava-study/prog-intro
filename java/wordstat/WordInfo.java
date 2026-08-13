@@ -1,5 +1,8 @@
 package wordstat;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * WordInfo
  *
@@ -8,6 +11,8 @@ package wordstat;
 public final class WordInfo {
 
   private final String word;
+  private IntList positions;
+  private Map<Integer, IntList> linePositions;
   private int count;
 
   /**
@@ -15,13 +20,44 @@ public final class WordInfo {
    */
   public WordInfo(final String word) {
     this.word = word;
+    this.positions = new IntList();
+    this.linePositions = new LinkedHashMap<>();
+  }
+
+  public void addPosition(int pos) {
+    positions.add(pos);
+    incrementCount();
+  }
+
+  public void addLinePosition(int line, int pos) {
+    if (linePositions.containsKey(line)) {
+      IntList il = linePositions.get(line);
+      il.add(pos);
+    } else {
+      IntList il = new IntList();
+      il.add(pos);
+      linePositions.put(line, il);
+    }
+    addPosition(pos);
   }
 
   public final void incrementCount() {
     count++;
   }
 
-  public final int getCount() {
+  public final int[] positions() {
+    return positions.asArray();
+  }
+
+  public final Map<Integer, IntList> linePositions() {
+    return linePositions;
+  }
+
+  public final int count() {
     return count;
+  }
+
+  public final String word() {
+    return word;
   }
 }

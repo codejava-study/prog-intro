@@ -277,6 +277,68 @@
     * Класс должен иметь имя `WsppPosition`
 
 
+## Домашнее задание 5. Свой сканнер [![Fast Scanner Test](https://github.com/codejava-study/prog-intro/actions/workflows/fastScanner.yml/badge.svg)](https://github.com/codejava-study/prog-intro/actions/workflows/fastScanner.yml)
+
+Модификации
+ * *Base* ✅
+    * Исходный код тестов: [FastReverseTest.java](java/reverse/FastReverseTest.java)
+    * Откомпилированные тесты: [FastReverseTest.jar](artifacts/FastReverseTest.jar)
+        * Аргументы командной строки: модификации
+ * *3637* ✅
+    * Рассмотрим входные данные как (не полностью определенную) матрицу,
+      вместо каждого числа выведите минимум из чисел,
+      находящихся в его столбце в последующих строках, и его самого
+    * Во вводе могут быть десятичные и восьмиричные числа
+    * Числа дополнительно могут разделяться
+      [открывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#START_PUNCTUATION)
+      и [закрывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#END_PUNCTUATION)
+      скобками
+    * Класс должен иметь имя `ReverseMinC`
+ * *3839* ✅
+    * Рассмотрим входные данные как (не полностью определенную) матрицу,
+      вместо каждого числа выведите минимум из чисел
+      текущее число — правый нижний угол матрицы
+    * Во вводе могут быть десятичные и восьмиричные числа
+    * Числа дополнительно могут разделяться
+      [открывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#START_PUNCTUATION)
+      и [закрывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#END_PUNCTUATION)
+      скобками
+    * Класс должен иметь имя `ReverseMin`
+ * *3435* ✅
+    * Рассмотрим входные данные как (не полностью определенную) матрицу,
+      выведите ее поворот по часовой стрелке
+    * Числа дополнительно могут разделяться
+      [открывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#START_PUNCTUATION)
+      и [закрывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#END_PUNCTUATION)
+      скобками
+    * Класс должен иметь имя `ReverseRotate`
+ * *3233* ✅
+    * Выведите (в реверсивном порядке) только числа,
+      у которых сумма номеров строки и столбца четная
+    * Числа дополнительно могут разделяться
+      [открывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#START_PUNCTUATION)
+      и [закрывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#END_PUNCTUATION)
+      скобками
+    * Класс должен иметь имя `ReverseEven`
+ * *4142* ✅
+    * Рассмотрим входные данные как (не полностью определенную) матрицу,
+      вместо каждого числа выведите среднее из чисел в его столбце и строке
+    * Числа дополнительно могут разделяться
+      [открывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#START_PUNCTUATION)
+      и [закрывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#END_PUNCTUATION)
+      скобками
+    * Класс должен иметь имя `ReverseAvg`
+ * *4749* ✅
+    * Рассмотрим входные данные как (не полностью определенную) матрицу,
+      вместо каждого числа выведите сумму чиселв его столбце и строке
+    * Числа дополнительно могут разделяться
+      [открывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#START_PUNCTUATION)
+      и [закрывающими](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Character.html#END_PUNCTUATION)
+      скобками
+    * Класс должен иметь имя `ReverseSum`
+
+
+
 ## Домашнее задание 4. Подсчет слов [![WordStat Test](https://github.com/codejava-study/prog-intro/actions/workflows/wordStat.yml/badge.svg)](https://github.com/codejava-study/prog-intro/actions/workflows/wordStat.yml)
 
 

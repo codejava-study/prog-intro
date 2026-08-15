@@ -25,7 +25,7 @@ public class ReverseUtil {
       int linePos = 0;
 
       for (final char ch : line.toCharArray()) {
-        if (!Character.isWhitespace(ch)) {
+        if (isValidChar(ch)) {
           sb.append(ch);
         } else {
           if (!sb.isEmpty()) {
@@ -48,6 +48,12 @@ public class ReverseUtil {
     sc.close();
 
     return Arrays.copyOf(matrix, rowPos);
+  }
+
+  private static boolean isValidChar(char ch) {
+    return (!Character.isWhitespace(ch))
+        && (Character.getType(ch) != Character.START_PUNCTUATION)
+        && (Character.getType(ch) != Character.END_PUNCTUATION);
   }
 
   /**

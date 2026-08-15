@@ -1,7 +1,11 @@
 package reverse;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * ReverseUtil
@@ -10,44 +14,76 @@ import java.util.Scanner;
  */
 public class ReverseUtil {
 
+  private static final int BUFFER_SIZE = 8096;
+
   /**
    * @return
+   * @throws IOException
    */
-  public static int[][] readData() {
-    final Scanner sc = new Scanner(System.in);
+  public static int[][] readData() throws IOException {
+
+    final Reader reader = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+
     final StringBuilder sb = new StringBuilder();
     int[][] matrix = new int[0][];
-    int rowPos = 0;
+    int[] lineNumbers = new int[0];
+    int pos = 0;
 
-    while (sc.hasNextLine()) {
-      final String line = sc.nextLine();
-      int[] lineNumbers = new int[0];
-      int linePos = 0;
+    int lineNumber = 0;
 
-      for (final char ch : line.toCharArray()) {
+    char[] buffer = new char[BUFFER_SIZE];
+    int read = reader.read(buffer);
+
+    while (read != -1) {
+
+      for (int i = 0; i < read; i++) {
+
+        char ch = buffer[i];
+
+        if (ch == '\n') {
+          if (!sb.isEmpty()) {
+            final String stringNumber = sb.toString().toLowerCase();
+            final int number;
+            if (stringNumber.endsWith("o")) {
+              number =
+                  new BigInteger(stringNumber.substring(0, stringNumber.length() - 1), 8)
+                      .intValue();
+            } else {
+              number = Integer.parseInt(stringNumber);
+            }
+            lineNumbers = add(number, lineNumbers, pos++);
+            sb.setLength(0);
+          }
+
+          lineNumbers = Arrays.copyOf(lineNumbers, pos);
+          matrix = add(lineNumbers, matrix, lineNumber++);
+
+          lineNumbers = new int[0];
+          pos = 0;
+        }
+
         if (isValidChar(ch)) {
           sb.append(ch);
         } else {
           if (!sb.isEmpty()) {
-            final int number = Integer.parseInt(sb.toString());
-            lineNumbers = add(number, lineNumbers, linePos++);
+            final String stringNumber = sb.toString().toLowerCase();
+            final int number;
+            if (stringNumber.endsWith("o")) {
+              number =
+                  new BigInteger(stringNumber.substring(0, stringNumber.length() - 1), 8)
+                      .intValue();
+            } else {
+              number = Integer.parseInt(stringNumber);
+            }
+            lineNumbers = add(number, lineNumbers, pos++);
             sb.setLength(0);
           }
         }
       }
-
-      if (!sb.isEmpty()) {
-        final int number = Integer.parseInt(sb.toString());
-        lineNumbers = add(number, lineNumbers, linePos++);
-        sb.setLength(0);
-      }
-
-      lineNumbers = Arrays.copyOf(lineNumbers, linePos);
-      matrix = add(lineNumbers, matrix, rowPos++);
+      read = reader.read(buffer);
     }
-    sc.close();
 
-    return Arrays.copyOf(matrix, rowPos);
+    return Arrays.copyOf(matrix, lineNumber);
   }
 
   private static boolean isValidChar(char ch) {

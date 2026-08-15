@@ -14,34 +14,51 @@ public final class ReverseRotate extends BaseReverse {
     new ReverseRotate().run();
   }
 
-  /**
-   * (non-Javadoc)
-   *
-   * @see reverse.BaseReverse#printMatrix(int[][])
-   */
   @Override
   protected final void printMatrix(final int[][] matrix) {
-    int rows = 0;
     final int columns = matrix.length;
 
-    for (int i = 0; i < matrix.length; i++) {
-      rows = Math.max(rows, matrix[i].length);
+    int rows = 0;
+    for (int[] row : matrix) {
+      rows = Math.max(rows, row.length);
     }
 
-    for (int i = 0; i < rows; i++) {
-
-      final StringBuilder out = new StringBuilder();
-      for (int j = columns - 1; j >= 0; j--) {
-
-        if (matrix[j].length > i) {
-          if (!out.isEmpty()) {
-            out.append(" ");
-          }
-          out.append(matrix[j][i]);
+    int[] rowSize = new int[rows + 1];
+    for (int[] row : matrix) {
+      if (row.length > 0) {
+        rowSize[0]++;
+        if (row.length < rows) {
+          rowSize[row.length]--;
         }
       }
+    }
+    for (int i = 1; i < rows; i++) {
+      rowSize[i] += rowSize[i - 1];
+    }
 
-      System.out.println(out.toString());
+    int[][] output = new int[rows][];
+    for (int i = 0; i < rows; i++) {
+      output[i] = new int[rowSize[i]];
+    }
+    int[] fillPos = new int[rows];
+
+    for (int j = columns - 1; j >= 0; j--) {
+      final int[] row = matrix[j];
+      for (int i = 0; i < row.length; i++) {
+        output[i][fillPos[i]++] = row[i];
+      }
+    }
+
+    final StringBuilder out = new StringBuilder();
+    for (int i = 0; i < rows; i++) {
+      out.setLength(0);
+      for (int v : output[i]) {
+        if (!out.isEmpty()) {
+          out.append(" ");
+        }
+        out.append(v);
+      }
+      System.out.println(out);
     }
   }
 }

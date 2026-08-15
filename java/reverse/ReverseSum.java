@@ -7,44 +7,42 @@ package reverse;
  */
 public final class ReverseSum extends BaseReverse {
 
-  /**
-   * @param args
-   */
   public static final void main(final String[] args) {
     new ReverseSum().run();
   }
 
-  /**
-   * (non-Javadoc)
-   *
-   * @see reverse.BaseReverse#printMatrix(int[][])
-   */
   @Override
   protected final void printMatrix(final int[][] matrix) {
-    for (int i = 0; i < matrix.length; i++) {
+    int maxCols = 0;
+    for (final int[] row : matrix) {
+      maxCols = Math.max(maxCols, row.length);
+    }
 
-      final StringBuilder out = new StringBuilder();
-      for (int j = 0; j < matrix[i].length; j++) {
+    final int[] colSum = new int[maxCols];
 
-        int sum = -matrix[i][j];
+    for (final int[] row : matrix) {
+      for (int j = 0; j < row.length; j++) {
+        colSum[j] += row[j];
+      }
+    }
 
-        for (int k = 0; k < matrix.length; k++) {
-          if (matrix[k].length > j) {
-            sum += matrix[k][j];
-          }
-        }
+    final StringBuilder out = new StringBuilder();
+    for (final int[] row : matrix) {
+      int rowSum = 0;
+      for (final int v : row) {
+        rowSum += v;
+      }
 
-        for (int k = 0; k < matrix[i].length; k++) {
-          sum += matrix[i][k];
-        }
+      out.setLength(0);
+      for (int j = 0; j < row.length; j++) {
+        final int sum = rowSum + colSum[j] - row[j];
 
         if (!out.isEmpty()) {
           out.append(" ");
         }
         out.append(sum);
       }
-
-      System.out.println(out.toString());
+      System.out.println(out);
     }
   }
 }

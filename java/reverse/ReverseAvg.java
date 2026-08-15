@@ -7,47 +7,46 @@ package reverse;
  */
 public final class ReverseAvg extends BaseReverse {
 
-  /**
-   * @param args
-   */
   public static final void main(final String[] args) {
     new ReverseAvg().run();
   }
 
-  /**
-   * (non-Javadoc)
-   *
-   * @see reverse.BaseReverse#printMatrix(int[][])
-   */
   @Override
   protected final void printMatrix(final int[][] matrix) {
-    for (int i = 0; i < matrix.length; i++) {
+    int maxCols = 0;
+    for (final int[] row : matrix) {
+      maxCols = Math.max(maxCols, row.length);
+    }
 
-      final StringBuilder out = new StringBuilder();
-      for (int j = 0; j < matrix[i].length; j++) {
+    final long[] colSum = new long[maxCols];
+    final int[] colCount = new int[maxCols];
 
-        long sum = -matrix[i][j];
-        int count = -1;
+    for (final int[] row : matrix) {
+      for (int j = 0; j < row.length; j++) {
+        colSum[j] += row[j];
+        colCount[j]++;
+      }
+    }
 
-        for (int k = 0; k < matrix.length; k++) {
-          if (matrix[k].length > j) {
-            sum += matrix[k][j];
-            count++;
-          }
-        }
+    final StringBuilder out = new StringBuilder();
+    for (final int[] row : matrix) {
+      long rowSum = 0;
+      for (final int v : row) {
+        rowSum += v;
+      }
+      final int rowLen = row.length;
 
-        for (int k = 0; k < matrix[i].length; k++) {
-          sum += matrix[i][k];
-          count++;
-        }
+      out.setLength(0);
+      for (int j = 0; j < row.length; j++) {
+        final long sum = rowSum + colSum[j] - row[j];
+        final int count = rowLen + colCount[j] - 1;
 
         if (!out.isEmpty()) {
           out.append(" ");
         }
         out.append(sum / count);
       }
-
-      System.out.println(out.toString());
+      System.out.println(out);
     }
   }
 }

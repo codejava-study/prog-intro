@@ -47,6 +47,6 @@ public class WsppPos extends BaseWordStat {
 
   @Override
   protected boolean isValidChar(char ch) {
-    return super.isValidChar(ch) || ch == '_' || ch == '$';
+    return super.isValidChar(ch) || ch == '_' || ch == '$' || Character.isDigit(ch);
   }
 }

@@ -1,6 +1,5 @@
 package wordstat;
 
-
 /**
  * WordStat
  *

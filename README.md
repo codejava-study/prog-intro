@@ -79,52 +79,55 @@
 <!--           `floor 1234` равно 1000; -->
 <!--         * `ceiling` – округление вверх до числа кратного 1000, -->
 <!--           `ceiling 1234` равно 2000. -->
-<!---->
-<!-- ## Домашнее задание 12. Выражения -->
-<!---->
-<!-- Модификации -->
-<!--  * *Base* -->
-<!--     * Реализуйте интерфейс [Expression](java/expression/Expression.java) -->
-<!--     * [Исходный код тестов](java/expression/ExpressionTest.java) -->
-<!--         * Первый аргумент: `easy` или `hard` -->
-<!--         * Последующие аргументы: модификации -->
-<!--  * *Triple* (32-39) -->
-<!--     * Дополнительно реализуйте поддержку выражений с тремя переменными: `x`, `y` и `z`. -->
-<!--       * Например, для `expr = new Subtract(new Add(new Variable("x"), new Variable("y")), new Const(1))`: -->
-<!--         * `expr.evaluate(2, 3, 5)` должно быть равно 4; -->
-<!--         * `expr.toString()` должно быть равно `((x + y) - 1)`. -->
-<!--     * Интерфейс/тесты [TripleExpression](java/expression/TripleExpression.java). -->
-<!--  * *BigIntegerList* (36, 37). Дополнительно реализуйте поддержку вычисления -->
-<!--     выражений в типе `BigInteger` с позиционными переменными. -->
-<!--     * Конструктор позиционной переменной получает индекс переменной. -->
-<!--     * При выводе позиционная переменная должна иметь вид `$index`. -->
-<!--     * Метод вычисления выражения должен называться `evaluateBi`, -->
-<!--       ему передаётся список значений переменных. -->
-<!--     * Например, для `expr = new Subtract(new Add(new Variable(0), new Variable(1)), new Const(BigInteger.ONE))`: -->
-<!--         * `expr.evaluateBi(List.of(BigInteger.TWO, BigInteger.THREE))` должно быть равно 4; -->
-<!--         * `expr.toString()` должно быть равно `(($0 + $1) - 1)`. -->
-<!--     * Интерфейс/тесты [BigIntegerListExpression](java/expression/BigIntegerListExpression.java). -->
-<!--  * *BigDecimalList* (38, 39). Дополнительно реализуйте поддержку вычисления -->
-<!--     выражений в типе `BigDecimal` с позиционными переменными. -->
-<!--     * Конструктор позиционной переменной получает индекс переменной. -->
-<!--     * При выводе позиционная переменная должна иметь вид `$index`. -->
-<!--     * Метод вычисления выражения должен называться `evaluateBd`, -->
-<!--       ему передаётся список значений переменных. -->
-<!--     * Например, для `expr = new Subtract(new Add(new Variable(0), new Variable(1)), new Const(BigDecimal.ONE))`: -->
-<!--         * `expr.evaluateBd(List.of(BigDecimal.TWO, BigDecimal.THREE))` должно быть равно 4; -->
-<!--         * `expr.toString()` должно быть равно `(($0 + $1) - 1)`. -->
-<!--     * Интерфейс/тесты [BigDecimalListExpression](java/expression/BigDecimalListExpression.java). -->
-<!--  * *List* (34, 35). Дополнительно реализуйте поддержку выражений вычисления -->
-<!--     выражений с позиционными переменными. -->
-<!--     * Конструктор позиционной переменной получает индекс переменной. -->
-<!--     * При вычислении выражения передаётся список значений переменных. -->
-<!--     * При выводе позиционная переменная должна иметь вид `$index`. -->
-<!--     * Например, для `expr = new Subtract(new Add(new Variable(0), new Variable(1)), new Const(1))`: -->
-<!--         * `expr.evaluate(List.of(2, 3))` должно быть равно 4; -->
-<!--         * `expr.toString()` должно быть равно `(($0 + $1) - 1)`. -->
-<!--     * Интерфейс/тесты [ListExpression](java/expression/ListExpression.java). -->
-<!---->
-<!---->
+
+## Домашнее задание 12. Выражения [![Expressions Test](https://github.com/codejava-study/prog-intro/actions/workflows/expressions.yml/badge.svg)](https://github.com/codejava-study/prog-intro/actions/workflows/expressions.yml)
+
+Модификации
+ * *Base* ✅
+    * Реализуйте интерфейс [Expression](java/expression/Expression.java)
+    * [Исходный код тестов](java/expression/ExpressionTest.java)
+        * Первый аргумент: `easy` или `hard`
+        * Последующие аргументы: модификации
+ * *Triple* (32-39) ✅
+    * Дополнительно реализуйте поддержку выражений с тремя переменными: `x`, `y` и `z`.
+      * Например, для `expr = new Subtract(new Add(new Variable("x"), new Variable("y")), new Const(1))`:
+        * `expr.evaluate(2, 3, 5)` должно быть равно 4;
+        * `expr.toString()` должно быть равно `((x + y) - 1)`.
+    * Интерфейс/тесты [TripleExpression](java/expression/TripleExpression.java).
+ * *BigIntegerList* (36, 37) ✅
+    * Дополнительно реализуйте поддержку вычисления
+    выражений в типе `BigInteger` с позиционными переменными.
+    * Конструктор позиционной переменной получает индекс переменной.
+    * При выводе позиционная переменная должна иметь вид `$index`.
+    * Метод вычисления выражения должен называться `evaluateBi`,
+      ему передаётся список значений переменных.
+    * Например, для `expr = new Subtract(new Add(new Variable(0), new Variable(1)), new Const(BigInteger.ONE))`:
+        * `expr.evaluateBi(List.of(BigInteger.TWO, BigInteger.THREE))` должно быть равно 4;
+        * `expr.toString()` должно быть равно `(($0 + $1) - 1)`.
+    * Интерфейс/тесты [BigIntegerListExpression](java/expression/BigIntegerListExpression.java).
+ * *BigDecimalList* (38, 39) ✅ 
+    * Дополнительно реализуйте поддержку вычисления
+    выражений в типе `BigDecimal` с позиционными переменными.
+    * Конструктор позиционной переменной получает индекс переменной.
+    * При выводе позиционная переменная должна иметь вид `$index`.
+    * Метод вычисления выражения должен называться `evaluateBd`,
+      ему передаётся список значений переменных.
+    * Например, для `expr = new Subtract(new Add(new Variable(0), new Variable(1)), new Const(BigDecimal.ONE))`:
+        * `expr.evaluateBd(List.of(BigDecimal.TWO, BigDecimal.THREE))` должно быть равно 4;
+        * `expr.toString()` должно быть равно `(($0 + $1) - 1)`.
+    * Интерфейс/тесты [BigDecimalListExpression](java/expression/BigDecimalListExpression.java).
+ * *List* (34, 35) ✅
+    * Дополнительно реализуйте поддержку выражений вычисления
+    выражений с позиционными переменными.
+    * Конструктор позиционной переменной получает индекс переменной.
+    * При вычислении выражения передаётся список значений переменных.
+    * При выводе позиционная переменная должна иметь вид `$index`.
+    * Например, для `expr = new Subtract(new Add(new Variable(0), new Variable(1)), new Const(1))`:
+        * `expr.evaluate(List.of(2, 3))` должно быть равно 4;
+        * `expr.toString()` должно быть равно `(($0 + $1) - 1)`.
+    * Интерфейс/тесты [ListExpression](java/expression/ListExpression.java).
+
+
 <!-- ## Домашнее задание 11. Игра m,n,k -->
 <!---->
 <!-- Решение должно находиться в пакете `game`. -->

@@ -9,18 +9,12 @@ import java.util.List;
  */
 public abstract class AbstractMarkup implements Markup {
   private final List<? extends Markup> elements;
-  private final String mdWrapper;
+  private final String mdOpen;
+  private final String mdClose;
   private final String htmlWrapper;
   private final String texOpen;
   private final String texClose;
 
-  /**
-   * @param elements
-   * @param mdWrapper
-   * @param htmlWrapper
-   * @param texOpen
-   * @param texClose
-   */
   public AbstractMarkup(
       final List<? extends Markup> elements,
       final String mdWrapper,
@@ -28,7 +22,23 @@ public abstract class AbstractMarkup implements Markup {
       final String texOpen,
       final String texClose) {
     this.elements = elements;
-    this.mdWrapper = mdWrapper;
+    this.mdOpen = mdWrapper;
+    this.mdClose = mdWrapper;
+    this.htmlWrapper = htmlWrapper;
+    this.texOpen = texOpen;
+    this.texClose = texClose;
+  }
+
+  public AbstractMarkup(
+      final List<? extends Markup> elements,
+      final String mdOpen,
+      final String mdClose,
+      final String htmlWrapper,
+      final String texOpen,
+      final String texClose) {
+    this.elements = elements;
+    this.mdOpen = mdOpen;
+    this.mdClose = mdClose;
     this.htmlWrapper = htmlWrapper;
     this.texOpen = texOpen;
     this.texClose = texClose;
@@ -42,9 +52,7 @@ public abstract class AbstractMarkup implements Markup {
   @Override
   public final void toHtml(final StringBuilder sb) {
     sb.append("<" + htmlWrapper + ">");
-    for (final Markup element : elements) {
-      element.toHtml(sb);
-    }
+    elements.forEach(e -> e.toHtml(sb));
     sb.append("</" + htmlWrapper + ">");
   }
 
@@ -55,11 +63,9 @@ public abstract class AbstractMarkup implements Markup {
    */
   @Override
   public final void toMarkdown(final StringBuilder sb) {
-    sb.append(mdWrapper);
-    for (final Markup element : elements) {
-      element.toMarkdown(sb);
-    }
-    sb.append(mdWrapper);
+    sb.append(mdOpen);
+    elements.forEach(e -> e.toMarkdown(sb));
+    sb.append(mdClose);
   }
 
   /**
@@ -70,9 +76,7 @@ public abstract class AbstractMarkup implements Markup {
   @Override
   public final void toTex(final StringBuilder sb) {
     sb.append(texOpen);
-    for (final Markup element : elements) {
-      element.toTex(sb);
-    }
+    elements.forEach(e -> e.toTex(sb));
     sb.append(texClose);
   }
 }

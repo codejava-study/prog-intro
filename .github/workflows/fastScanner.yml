@@ -7,4 +7,3 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: javac -d out $(find java/base java/reverse java/wordstat -name "*.java") && java -ea -cp out reverse.FastReverseTest Base 3233 3435 3637 3839 4142 4749
-

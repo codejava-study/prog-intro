@@ -7,5 +7,3 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: javac -d out $(find java/base java/markup -name "*.java") && java -ea -cp out markup.MarkupListTest 3637 3839 4142 4749
-
-

@@ -1,0 +1,9 @@
+name: Expressions Test 
+on: push
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - run: javac -d out $(find java/base java/expression -name "*.java") && java -ea -cp out expression.ExpressionTest hard Base && java -ea -cp out expression.TripleExpression hard Base Triple && java -ea -cp out expression.ListExpression hard Base Triple List && java -ea -cp out expression.BigIntegerListExpression hard Base Triple BigIntegerList && java -ea -cp out expression.BigDecimalListExpression hard Base Triple BigDecimalList
